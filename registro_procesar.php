@@ -7,10 +7,7 @@ $password = "";
 $dbname = "lars";
 
 // Verificar si el usuario está autenticado
-if (!isset($_SESSION['email'])) {
-    header("Location: index.php");
-    exit();
-}
+
 
 // Recibe los datos del formulario
 $nombre = $_POST['nombre'];
