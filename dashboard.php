@@ -69,11 +69,105 @@ if (!isset($_SESSION['email'])) {
       </div>
 
     </aside>
+    <!--fin del Nav -->
+
+    <!--===========MAIN================!-->
+
+    <main>
+
+      <h1>Bienvenido a LARS</h1>
+      <div class="date">
+        <input type="date">
+      </div>
+
+      <!-- TARJETITAS DE ARRIBAS -->
+      <div class="insights">
+        <div class="groups">
+          <span class="material-symbols-outlined">groups</span>
+          <div class="middle">
+            <div class="left">
+              <h3>GRUPOS ASIGNADOS</h3>
+              <h2>10</h2>  
+            </div>
+          </div>
+        </div>
+
+
+        <div class="students">
+            <span class="material-symbols-outlined">badge</span>
+            <div class="middle">
+              <div class="left">
+                <h3>ALUMNOS ASIGNADOS</h3>
+                <h2>600</h2>
+              </div>
+            </div>
+          </div>
+
+          <div class="grades">
+            <span class="material-symbols-outlined">123</span>
+            <div class="middle">
+              <div class="left">
+                <h3>PARCIAL DE EVALUACION</h3>
+                <h2>3°</h2>
+              </div>
+            </div>
+          </div>
+      </div>
+      <!--Fin de las tarjetitas-->
+
+
+
+
+
+    </main>
+
+
+    <div class="right">
+      <div class="top">
+
+        <button id="menu-btn">
+          <span class="material-symbols-outlined">menu_open</span>
+        </button>
+        <div class="theme-toggler">
+          <span class="material-symbols-outlined active">routine</span>
+          <span class="material-symbols-outlined">nights_stay</span>
+        </div>
+        <div class="profile">
+          <div class="info">
+            <p>Hola!, <b>Harold</b></p>
+            <small class="text-muted">CEO SENK</small>
+          </div>
+          <div class="profile-photo">
+            <img src="img/harold.jpeg">
+          </div>
+        </div>
+
+      </div>
+      <!--Esquina superior derecha teminada-->
+
+      <div class="recent-updates">
+
+        <h2>¡Ultimas actualizaciones!</h2>
+        <div class="updates">
+          <div class="update">
+            <div class="profile-photo">
+              <img src="img/4.jpg">
+            </div>
+            <div class="message">
+              <p><b>Senk</b> Esta contratando diseñadoras! Manda tu cv</p>
+              <small class="text-muted">Hace 10 horas</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 
 
+<?php include "js/jSDashboard.php" ?>
 
 
-  <script src="js/dashboard.js" ></script>
 </body>
 </html>

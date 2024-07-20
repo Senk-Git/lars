@@ -49,6 +49,7 @@
         background: var(--color-background);
         user-select: none;
         overflow: hidden;
+        color: var(--color-dark);
     }
 
     .container{
@@ -85,7 +86,7 @@
         font-size: 0.77rem;
     }
 
-    .small{
+    small{
         font-size: 0.75rem;
     }
 
@@ -131,7 +132,6 @@
 
     /* Logo y la X del nav */
     aside .top{
-        background: white;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -211,6 +211,279 @@
 
     aside .sidebar a:hover span{
         margin-left: 1rem;
+    }
+
+    /*==================MAIN===================*/
+    main{
+        margin-top: 1.4rem;
+    }
+
+    main .date{
+        display: inline-block;
+        background: var(--color-light);
+        border-radius: var(--border-radius-1);
+        margin-top: 1rem;
+        padding: 0.5rem 1.6rem;
+    }
+
+    main .date input[type="date"]{
+        background: transparent;
+        color: var(--color-dark);
+    }
+
+    main .insights{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.6rem;
+    }
+
+    main .insights > div{
+        background: var(--color-white);
+        padding: var(--card-padding);
+        border-radius: var(--card-border-radius);
+        margin-top: 1rem;
+        box-shadow: var(--box-shadow);
+        transition: all 300ms ease;
+    }
+
+    main .insights > div:hover{
+        box-shadow: none;
+
+    }
+
+    main .insights > div span{
+        background-color: var(--color-primary);
+        padding: 0.5rem;
+        border-radius: 50%;
+        color: var(--color-white);
+        font-size: 2rem;
+    }
+
+    main .insights > div.students span{
+        background-color: var(--color-warning);
+    }
+
+    main .insights > div.grades span{
+        background-color: var(--color-danger);
+    }
+
+    main .insights > div .middle{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    main .insights h3{
+        margin: 1rem 0 0.6rem;
+        font-size: 1rem;
+    }
+
+    /* ==========Derecha Superior =========== */
+    .right{
+        margin-top: 1.4rem;
+    }
+
+    .right .top{
+        display: flex;
+        justify-content: end;
+        gap: 2rem;
+    }
+
+    .right .top button{
+        display: none;
+    }
+
+    .right .theme-toggler{
+        background: var(--color-light);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 1.6rem;
+        width: 4.2rem;
+        cursor: pointer;
+        border-radius: var(--border-radius-1);
+    }
+
+    .right .theme-toggler span{
+        font-size: 1.2rem;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .right .theme-toggler span.active{
+        background: var(--color-primary);
+        color: white;
+        border-radius: var(--border-radius-1);
+    }
+
+    .right .top .profile{
+        display: flex;
+        gap: 2rem;
+        text-align: right;
+    }
+
+    /* ==========UPTADES ========== */
+
+    .right .recent-updates{
+        margin-top: 1rem;
+    }
+
+    .right .recent-updates h2{
+        margin-bottom: 0.8rem;
+    }
+
+    .right .recent-updates .updates{
+        background: var(--color-white);
+        padding: var(--card-padding);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--box-shadow);
+        transition: all 300ms ease;
+    }
+
+    .right .recent-updates .updates:hover{
+        box-shadow: none;
+    }
+
+    .right .recent-updates .updates .update{
+        display: grid;
+        grid-template-columns: 2.6rem auto;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    /*========== MEDIA QUERIESSSS O RESPONSIVO PA LOS COMPAS */
+    @media screen and (max-width:1200px) {
+        .container{
+            width: 94%;
+            grid-template-columns: 7rem auto 23rem;
+        }
+
+        aside .logo h2{
+            display: none;
+        }
+
+        aside .sidebar h3{
+            display: none;
+        }
+
+        aside .sidebar a{
+            width: 5.6rem;
+        }
+        
+        aside .sidebar a:last-child{
+            position: relative;
+            margin-top: 1.8rem;
+        }
+
+        main .insights{
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+    }
+
+    /*====MEDIA QUERIES PARA MOBILE*/
+
+    @media screen and (max-width: 768px) {
+        .container{
+            width: 100%;
+            grid-template-columns: 1fr;
+        }
+
+        aside{
+            position: fixed;
+            left: -100%;
+            background: var(--color-white);
+            width: 18rem;
+            z-index: 3;
+            box-shadow: 1rem 3rem 4rem var(--color-light);
+            height: 100vh;
+            padding-left: var(--card-padding);
+            display: none;
+            animation: showMenu 400ms ease forwards;
+        }
+
+        @keyframes showMenu{
+            to{
+                left:0;
+            }
+        }
+
+        aside .logo{
+            margin-left: 1rem;
+        }
+
+        aside .logo h2{
+            display: inline;
+        }
+
+        aside .sidebar h3{
+            display: inline;
+        }
+
+        aside .sidebar a{
+            width: 100%;
+            height: 3.4rem;
+        }
+
+        aside .sidebar a:last-child{
+            position: absolute;
+            bottom: 5rem;
+        }
+
+        aside .close{
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        main{
+            margin-top: 8rem;
+            padding: 0 1rem;
+        }
+
+        .right{
+            width: 94%;
+            margin: 0 auto 4rem;
+        }
+
+        .right .top{
+            position: fixed;
+            top: 0;
+            left: 0;
+            align-items: center;
+            padding: 0 0.8rem;
+            height: 4.6rem;
+            background: var(--color-white);
+            width: 100%;
+            margin: 0;
+            z-index: 2;
+            box-shadow: 0 1rem 1rem var(--color-light);
+        }
+
+        .right .top .theme-toggler{
+            width: 4.4rem;
+            position: absolute;
+            left: 66%;
+        }
+
+        .right .profile .info{
+            display: none;
+        }
+
+        .right .top button{
+            display: inline-block;
+            background: transparent;
+            cursor: pointer;
+            color: var(--color-danger);
+            position: absolute;
+            left: 1rem;
+        }
+
+        .right .top button span{
+            font-size: 2rem;
+        }
     }
 
 </style>
