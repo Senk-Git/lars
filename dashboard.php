@@ -15,22 +15,18 @@ if (!isset($_SESSION['email'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/dashboard.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
   <title>Dashboard</title>
+
+  <?php include "css/stylesDash.php"; ?>
 </head>
 
 
 
 
 <body>
-  <h1>BIENVENIDO A LARS!</h1>
-  <p>Contenido del dashboard...</p>
 
-  <a href="logout.php">Cerrar sesión</a>
-  <span class="material-symbols-outlined">
-close
-</span>
+
 
 <!--Navegador -->
   <div class="container">
@@ -39,7 +35,7 @@ close
       <div class="top">
         <div class="logo">
           <img src="img/lars_limpio.png" alt="">
-          <h2>LA<span class="succeses">RS</span></h2>
+          <h2>LA<span class="success">RS</span></h2>
         </div>
 
         <div class="close" id="close-btn">
@@ -49,7 +45,7 @@ close
 
       <div class="sidebar">
 
-        <a href="#">
+        <a href="#" class="active">
           <span class="material-symbols-outlined">space_dashboard</span>
           <h3>Inicio</h3>
         </a>
@@ -64,6 +60,10 @@ close
         <a href="#">
           <span class="material-symbols-outlined">school</span>
           <h3>Totales</h3>
+        </a>
+        <a href="logout.php">
+          <span class="material-symbols-outlined">logout</span>
+          <h3>Cerrar sesión</h3>
         </a>
 
       </div>
