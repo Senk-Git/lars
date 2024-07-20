@@ -26,6 +26,16 @@
         --box-shadow: 0 2rem 3rem var(--color-light);
     }
 
+
+    .dark-theme-variable{
+        --color-white: #202528;
+        --color-dark: #edeffd;
+        --color-light: rgb(0, 0, 0, 0.4);
+        --color-dark-variant: #a3bdcc;
+        --color-background: #181a1e;
+        --box-shadow: 0 2rem 3rem var(--color-light);
+    }
+
     *{
         margin: 0;
         padding: 0;
