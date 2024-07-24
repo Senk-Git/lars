@@ -22,4 +22,19 @@
     })
 
 
+    document.addEventListener('DOMContentLoaded', () => {
+    const sidebarLinks = document.querySelectorAll('.sidebar a');
+
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            // Remove 'active' class from all links
+            sidebarLinks.forEach(item => item.classList.remove('active'));
+
+            // Add 'active' class to the clicked link
+            link.classList.add('active');
+        });
+    });
+});
+
+
 </script>

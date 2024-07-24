@@ -45,19 +45,19 @@ if (!isset($_SESSION['email'])) {
 
       <div class="sidebar">
 
-        <a href="#" class="active">
+        <a href="#" class="active" id="1">
           <span class="material-symbols-outlined">space_dashboard</span>
           <h3>Inicio</h3>
         </a>
-        <a href="#">
+        <a href="#" id="2">
           <span class="material-symbols-outlined">group</span>
           <h3>Grados</h3>
         </a>
-        <a href="#">
+        <a href="#" id="3">
           <span class="material-symbols-outlined">collections_bookmark</span>
           <h3>Materias</h3>
         </a>
-        <a href="#">
+        <a href="#" id="4">
           <span class="material-symbols-outlined">school</span>
           <h3>Totales</h3>
         </a>
