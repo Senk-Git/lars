@@ -61,7 +61,7 @@ if (!isset($_SESSION['email'])) {
           <span class="material-symbols-outlined">school</span>
           <h3>Totales</h3>
         </a>
-        <a href="logout.php">
+        <a href="login/logout.php">
           <span class="material-symbols-outlined">logout</span>
           <h3>Cerrar sesión</h3>
         </a>

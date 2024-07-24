@@ -78,7 +78,7 @@
   <div class="container">
     <div class="form-container sign-in-container">
       <img src="img/lars_limpio.png" alt="LARS Logo" class="mb-4">
-      <form method="POST" action="login.php">
+      <form method="POST" action="login/login.php">
         <h1 class="mb-4">Inicia sesión</h1>
         <div class="social-container mb-4">
           <a href="https://www.facebook.com/CorpSenk" class="social"><i class="fab fa-facebook-f"></i></a>
