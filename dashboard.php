@@ -35,7 +35,7 @@ if (!isset($_SESSION['email'])) {
       <div class="top">
         <div class="logo">
           <img src="img/lars_limpio.png" alt="">
-          <h2>LA<span class="success">RS</span></h2>
+          <h2>LA<span class="primary">RS</span></h2>
         </div>
 
         <div class="close" id="close-btn">
@@ -77,7 +77,8 @@ if (!isset($_SESSION['email'])) {
 
       <h1>Bienvenido a LARS</h1>
       <div class="date">
-        <input type="date">
+        <h3 class="fecha"></h3>
+        <h3 class="tiempo"></h3>
       </div>
 
       <!-- TARJETITAS DE ARRIBAS -->
