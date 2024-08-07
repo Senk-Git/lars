@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
   <title>Dashboard</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
   <?php include "css/stylesDash.php"; ?>
 </head>
@@ -63,21 +64,15 @@
     <!--===========MAIN================!-->
 
     <main>
-
-     
-
-
-
-
-    </main>
-
+    
+  </main>
 
     <div class="right">
       <div class="top">
 
         <button id="menu-btn">
           <span class="material-symbols-outlined">menu_open</span>
-        </button>
+        </button> 
         <div class="theme-toggler">
           <span class="material-symbols-outlined active">routine</span>
           <span class="material-symbols-outlined">nights_stay</span>
