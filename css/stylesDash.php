@@ -2,7 +2,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
     :root{
-        --color-primary: #41f1b6;
+        --color-primary: #2abf7a;
         --color-danger: #ff7782;
         --color-success: #41f1b6;
         --color-warning: #ffbb55;
@@ -28,6 +28,7 @@
 
 
     .dark-theme-variable{
+        --color-primary: #41f1b6;
         --color-white: #202528;
         --color-dark: #edeffd;
         --color-light: rgb(0, 0, 0, 0.4);

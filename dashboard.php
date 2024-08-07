@@ -35,7 +35,7 @@ if (!isset($_SESSION['email'])) {
       <div class="top">
         <div class="logo">
           <img src="img/lars_limpio.png" alt="">
-          <h2>LA<span class="success">RS</span></h2>
+          <h2>LA<span class="primary">RS</span></h2>
         </div>
 
         <div class="close" id="close-btn">
@@ -45,19 +45,19 @@ if (!isset($_SESSION['email'])) {
 
       <div class="sidebar">
 
-        <a href="#" class="active">
+        <a href="#" class="active" id="1">
           <span class="material-symbols-outlined">space_dashboard</span>
           <h3>Inicio</h3>
         </a>
-        <a href="#">
+        <a href="#" id="2">
           <span class="material-symbols-outlined">group</span>
           <h3>Grados</h3>
         </a>
-        <a href="#">
+        <a href="#" id="3">
           <span class="material-symbols-outlined">collections_bookmark</span>
           <h3>Materias</h3>
         </a>
-        <a href="#">
+        <a href="#" id="4">
           <span class="material-symbols-outlined">school</span>
           <h3>Totales</h3>
         </a>
@@ -77,7 +77,8 @@ if (!isset($_SESSION['email'])) {
 
       <h1>Bienvenido a LARS</h1>
       <div class="date">
-        <input type="date">
+        <h3 class="fecha"></h3>
+        <h3 class="tiempo"></h3>
       </div>
 
       <!-- TARJETITAS DE ARRIBAS -->
