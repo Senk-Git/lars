@@ -38,9 +38,9 @@ if (!isset($_SESSION['email'])) {
           <h2>LA<span class="primary">RS</span></h2>
         </div>
 
-        <div class="close" id="close-btn">
+        <d  iv class="close" id="close-btn">
           <span class="material-symbols-outlined">close</span>
-        </div>
+        </d>
       </div>
 
       <div class="sidebar">

@@ -20,28 +20,31 @@
       <span class="material-symbols-outlined">nights_stay</span>
     </div>
     <div class="form-container sign-in-container">
-      <img src="img/lars_limpio.png" alt="LARS Logo" class="mb-4">
-      <form method="POST" action="login/login.php">
-        <h1 class="mb-4">Inicia sesión</h1>
-        <div class="social-container mb-4">
-          <a href="https://www.facebook.com/CorpSenk" class="social"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/los_senk/" class="social"><i class="fab fa-instagram"></i></a>
-          <a href="https://wa.me/5574063108" class="social"><i class="fab fa-whatsapp"></i></a>
-        </div>
-        <input type="email" class="form-control mb-3" name="email" placeholder="Email" required>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required>
-          <div class="input-group-append">
-            <span class="input-group-text">
-              <i class="fa fa-eye" id="togglePassword"></i>
-            </span>
-          </div>
-        </div>
-        <input type="hidden" name="redirect" value="dashboard.php">
-        <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
-      </form>
+  <img src="img/lars_limpio.png" alt="LARS Logo" class="mb-4">
+  <form method="POST" action="login/login.php">
+    <h1 class="mb-4">Inicia sesión</h1>
+    <div class="social-container mb-4">
+      <a href="https://www.facebook.com/CorpSenk" class="social"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/los_senk/" class="social"><i class="fab fa-instagram"></i></a>
+      <a href="https://wa.me/5574063108" class="social"><i class="fab fa-whatsapp"></i></a>
     </div>
-  </div>
+    <input type="email" class="form-control mb-3" name="email" placeholder="Email" required>
+    <div class="input-group mb-3">
+      <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required>
+      <div class="input-group-append">
+        <span class="input-group-text">
+          <i class="fa fa-eye" id="togglePassword"></i>
+        </span>
+      </div>
+    </div>
+    <div class="text-right mb-3">
+      <a href="./password/restablecer.php" class="text-primary">¿Olvidaste tu contraseña?</a>
+    </div>
+    <input type="hidden" name="redirect" value="dashboard.php">
+    <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+  </form>
+</div>
+
 
   <footer>
     <p>@Senk - Todos los derechos reservados &copy; 2024</p>

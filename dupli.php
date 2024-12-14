@@ -39,7 +39,7 @@
           <span class="material-symbols-outlined">space_dashboard</span>
           <h3>Inicio</h3>
         </a>
-        <a href="#">
+        <a href="grupos.php">
           <span class="material-symbols-outlined">group</span>
           <h3>Grados</h3>
         </a>
@@ -64,7 +64,11 @@
     <!--===========MAIN================!-->
 
     <main>
-    
+    <h1>Bienvenido a LARS</h1>
+      <div class="date">
+        <h3 class="fecha"></h3>
+        <h3 class="tiempo"></h3>
+      </div>
   </main>
 
     <div class="right">
