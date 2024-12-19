@@ -23,7 +23,6 @@ if (!isset($_SESSION['email'])) {
 
 
 
-
 <body>
 
 
@@ -49,7 +48,7 @@ if (!isset($_SESSION['email'])) {
           <span class="material-symbols-outlined">space_dashboard</span>
           <h3>Inicio</h3>
         </a>
-        <a href="#" id="2">
+        <a href="grupos.php" id="2">
           <span class="material-symbols-outlined">group</span>
           <h3>Grados</h3>
         </a>
