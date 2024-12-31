@@ -52,11 +52,11 @@ if (!isset($_SESSION['email'])) {
           <span class="material-symbols-outlined">group</span>
           <h3>Grados</h3>
         </a>
-        <a href="#" id="3">
+        <a href="materias.php" id="3">
           <span class="material-symbols-outlined">collections_bookmark</span>
           <h3>Materias</h3>
         </a>
-        <a href="#" id="4">
+        <a href="totales.php" id="4">
           <span class="material-symbols-outlined">school</span>
           <h3>Totales</h3>
         </a>

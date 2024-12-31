@@ -1,7 +1,7 @@
 <script>
     //////////LA BARRA DE NAVEGACION ///////////////////////
 
-const sideMenu = document.querySelector("aside");
+    const sideMenu = document.querySelector("aside");
 const menuBtn = document.querySelector("#menu-btn");
 const closeBtn = document.querySelector("#close-btn");
 
@@ -12,6 +12,7 @@ menuBtn.addEventListener('click', () => {
 closeBtn.addEventListener('click', () => {
     sideMenu.style.display = 'none';
 });
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const sidebarLinks = document.querySelectorAll('.sidebar a');
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
 
 ///////////////// CAMBIAR TEMA ////////////////////////
 

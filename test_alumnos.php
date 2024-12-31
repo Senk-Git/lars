@@ -7,7 +7,7 @@ if ($mysqli->connect_error) {
     echo json_encode([
         "status" => "error",
         "message" => "Error al conectar con la base de datos: " . $mysqli->connect_error
-    ]);
+    ]); 
     exit;
 }
 
