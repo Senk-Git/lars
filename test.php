@@ -383,21 +383,49 @@
             </div>
 
             <div class="recent-updates">
-              <h2>¡Ultimas actualizaciones!</h2>
-              <div class="updates">
-                <div class="update">
-                  <div class="profile-photo">
-                    <img src="img/4.jpg">
-                  </div>
-                  <div class="message">
-                    <p><b>Senk</b> Esta contratando diseñadoras! Manda tu cv</p>
-                    <small class="text-muted">Hace 10 horas</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+  <h2>¡Últimas actualizaciones!</h2>
+  <div class="updates">
+    <div class="update">
+      <div class="message">
+        <!-- Este contenido se actualizará al hacer clic -->
+      </div>
+    </div>
+    <div class="update">
+      <div class="message">
+        <!-- Este contenido también se actualizará -->
+      </div>
+    </div>
+    <!-- Puedes agregar más divs de actualizaciones si es necesario -->
+  </div>
+</div>
+ 
+<script>
+  document.querySelector('.recent-updates').addEventListener('click', function(event) {
+    // Asegurarse de que el clic se haya realizado en un contenedor .update
+    const updateClicked = event.target.closest('.update');
+    
+    if (updateClicked) {
+        // Si se hizo clic en un contenedor .update, actualizamos el contenido de esa actualización
+        
+        // Obtener el índice de la actualización clickeada
+        const updates = document.querySelectorAll('.update');
+        const index = Array.from(updates).indexOf(updateClicked) + 1; // +1 para que empiece en 1
+        
+        // Seleccionar el contenedor de mensaje dentro de la actualización clickeada
+        const messageElement = updateClicked.querySelector('.message');
+        
+        // Actualizar el contenido con el evento de clic
+        messageElement.innerHTML = `
+            <p><b>Evento registrado:</b> Hiciste clic en la actualización número ${index}.</p>
+            <small class="text-muted">Hace justo ahora</small>
+        `;
+        
+        // Opcional: Mostrar un log en la consola para verificar
+        console.log(`Se ha registrado un clic en la actualización número ${index}`);
+    }
+});
+
+</script>
 
         <?php include "js/jSDashboard.php"; ?>
 

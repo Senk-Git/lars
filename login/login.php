@@ -4,46 +4,55 @@ session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "users";
+$dbname = "sistema_utec";
 
-// Recibe los datos del formulario
-$email = $_POST['email'];
-$password_input = $_POST['password'];
+// Captura de datos
+$matricula = $_POST['matricula'] ?? null;
+$password_input = $_POST['password'] ?? null;
+
+// Validación de campos vacíos
+if (empty($matricula) || empty($password_input)) {
+    header("Location: ../index.php?login_error=campos_vacios");
+    exit();
+}
 
 try {
-    // Conecta a la base de datos
+    // Conexión a la base de datos
     $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-    // Consulta preparada para obtener el usuario por email
-    $stmt = $conn->prepare("SELECT * FROM usuarios WHERE email = :email");
-    $stmt->bindParam(':email', $email);
+    // Consulta segura
+    $stmt = $conn->prepare("
+        SELECT 
+            u.id,
+            u.contrasena,
+            r.nombre AS rol
+        FROM usuarios u
+        LEFT JOIN roles r ON u.rol_id = r.id
+        WHERE u.matricula = :matricula
+    ");
+    $stmt->bindParam(':matricula', $matricula);
     $stmt->execute();
 
-    // Verifica si se encontró algún usuario
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($user) {
-        // Comparar la contraseña directamente (no recomendado para producción)
-        if ($password_input === $user['password']) {
-            // Si las contraseñas coinciden, se guarda la información en la sesión
-            $_SESSION['email'] = $email;
-            // Redirige al dashboard
-            header("Location: ../dashboard.php");
-            exit; // Asegúrate de salir después de redirigir
-        } else {
-            // Si la contraseña no es correcta
-            echo "Contraseña incorrecta.";
-        }
+
+    // Validación de contraseña
+    if ($user && password_verify($password_input, $user['contrasena'])) {
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['rol'] = $user['rol'];
+
+        // Redirección según rol
+        $redirect_url = ($user['rol'] === 'alumno') ? '../dashboard_alumno.php' : '../dashboard.php';
+        header("Location: $redirect_url");
+        exit();
     } else {
-        // Si no se encontró el usuario en la base de datos
-        echo "No se encontró ningún usuario con el correo electrónico: " . htmlspecialchars($email);
+        header("Location: ../index.php?login_error=incorrecto");
+        exit();
     }
 
 } catch (PDOException $e) {
-    // Maneja cualquier error de conexión o consulta
-    echo "Error: " . $e->getMessage();
+    error_log("Login DB Error: " . $e->getMessage());
+    header("Location: ../index.php?login_error=db_fail");
+    exit();
 }
-
-// Cierra la conexión
-$conn = null;
-?>

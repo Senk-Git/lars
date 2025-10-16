@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-$mysqli = new mysqli("localhost", "root", "", "users");
+$mysqli = new mysqli("localhost", "root", "", "lars");
 
 if ($mysqli->connect_error) {
     echo json_encode([
@@ -23,7 +23,7 @@ if (!$groupId) {
     exit;
 }
 
-$query = "SELECT id, nombre, apellido FROM alumnos_1dms1 WHERE grupo = ?";
+$query = "SELECT id, nombre, apellido FROM alumnos_1dsm1 WHERE grupo = ?";
 $stmt = $mysqli->prepare($query);
 
 if (!$stmt) {

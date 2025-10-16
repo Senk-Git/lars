@@ -254,6 +254,51 @@
               .icon-fail {
                   color: red;
               }
+/* Contenedor principal de actualizaciones */
+.recent-updates {
+    width: auto; /* Adapta el contenedor al contenido */
+    max-width: 100%; /* Evita que se exceda del espacio disponible */
+    margin: auto;
+}
+
+.recent-updates h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+/* Contenedor que agrupa las actualizaciones */
+.updates {
+  display: block; /* Asegúrate de que el contenedor sea un bloque */
+    width: 100%; /* Ajusta el ancho al contenedor padre */
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 5px;
+
+
+}
+
+/* Cada actualización individual */
+.update {
+    padding: 15px; /* Espaciado interno */
+    background:rgb(255, 255, 255); /* Fondo blanco */
+    border-radius: 50px; /* Bordes redondeados */
+    font-size: 14px; /* Ajusta el tamaño del texto */
+    line-height: 1.6; /* Mejora la legibilidad */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    white-space: nowrap; /* Permite saltos de línea */
+    word-wrap: normal; /* Divide palabras largas */
+    overflow-wrap: normal; /* Soporte adicional para texto largo */
+}
+
+/* Estilo para el texto dentro de cada actualización */
+.message {
+    font-size: 16px;
+    color: #333333; /* Color de texto legible */
+}
+
+
+
+        
 
           </style>
           
@@ -382,22 +427,41 @@
               </div>
             </div>
 
-            <div class="recent-updates">
-              <h2>¡Ultimas actualizaciones!</h2>
-              <div class="updates">
-                <div class="update">
-                  <div class="profile-photo">
-                    <img src="img/4.jpg">
-                  </div>
-                  <div class="message">
-                    <p><b>Senk</b> Esta contratando diseñadoras! Manda tu cv</p>
-                    <small class="text-muted">Hace 10 horas</small>
-                  </div>
+            <div class="right">
+                <div class="recent-updates">
+                    <h2>¡Últimas actualizaciones!</h2>
+                    <div class="updates" id="updates-container">
+                        <!-- Las actualizaciones aparecerán aquí -->
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
+
+   
+<script>
+        // Función para agregar una nueva actualización
+        function agregarActualizacion(mensaje) {
+            const container = document.getElementById('updates-container');
+            const nuevaActualizacion = document.createElement('div');
+            nuevaActualizacion.classList.add('update');
+            
+            const mensajeElemento = document.createElement('div');
+            mensajeElemento.classList.add('message');
+            mensajeElemento.textContent = mensaje;
+            
+            nuevaActualizacion.appendChild(mensajeElemento);
+            container.prepend(nuevaActualizacion); // Inserta al principio para mostrar lo más reciente arriba
+        }
+
+        // Escuchar clics en los botones
+        const botones = document.querySelectorAll('.btn');
+        botones.forEach(boton => {
+            boton.addEventListener('click', function() {
+                const mensaje = `Clic en el botón: ${this.textContent.trim()}`;
+                agregarActualizacion(mensaje);
+            });
+        });
+</script>
+
 
         <?php include "js/jSDashboard.php"; ?>
 

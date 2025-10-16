@@ -183,7 +183,12 @@
                 .icon-fail {
                     color: red;
                 }
-
+                .btn-attendance.active {
+    background-color: #007bff; /* Color de fondo azul */
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Sombra para resaltarlo */
+}
             </style>
             
         </head>
@@ -243,7 +248,7 @@
           <i class="material-icons">check_circle</i> Pasar lista
         </button>
 
-        <!-- Botón Registrar Actividades -->
+       
         <button class="btn btn-success btn-lg register-activities-btn" data-bs-toggle="modal" data-bs-target="#activities-modal">
           <i class="material-icons">event_note</i> Registrar actividades
         </button>
@@ -252,7 +257,6 @@
 
 
 
-        <!-- Modal para mostrar lista de alumnos -->
         <div id="attendance-modal" class="modal">
       <div class="modal-content">
           <span class="close" id="close-modal">&times;</span>
@@ -335,110 +339,121 @@
 
 
           <script>
-  document.addEventListener('DOMContentLoaded', () => {
-      const openModalButton = document.getElementById('open-modal');
-      const closeModalButton = document.getElementById('close-modal');
-      const attendanceModal = document.getElementById('attendance-modal');
-      const studentList = document.getElementById('student-list');
-      const submitAttendanceButton = document.getElementById('submit-attendance');
-      const attendanceData = {};
+ document.addEventListener('DOMContentLoaded', () => {
+    const openModalButton = document.getElementById('open-modal');
+    const closeModalButton = document.getElementById('close-modal');
+    const attendanceModal = document.getElementById('attendance-modal');
+    const studentList = document.getElementById('student-list');
+    const submitAttendanceButton = document.getElementById('submit-attendance');
+    const attendanceData = {};
 
-      const openModal = () => {
-          attendanceModal.style.display = 'block';
+    const openModal = () => {
+        attendanceModal.style.display = 'block';
 
-          fetch('test_alumnos.php', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ groupId: '1DSM1' })
-          })
-          .then(response => response.text()) // Usar text() para inspección
-          .then(data => {
-              console.log('Respuesta del servidor (texto sin procesar):', data);
-              try {
-                  const parsedData = JSON.parse(data); // Intentar convertir la respuesta a JSON
-                  console.log('Datos procesados de test_alumnos.php:', parsedData);
-                  studentList.innerHTML = '';
+        fetch('test_alumnos.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ groupId: '1DSM1' })
+        })
+        .then(response => response.json())
+        .then(parsedData => {
+            console.log('Datos procesados de test_alumnos.php:', parsedData);
+            studentList.innerHTML = '';
 
-                  if (parsedData.status === 'success' && parsedData.students.length > 0) {
-                      parsedData.students.forEach(student => {
-                          attendanceData[student.id] = { present: false, absent: false, late: false, justified: false };
-                          const row = `
-                              <tr>
-                                  <td>${student.id}</td>
-                                  <td>${student.nombre}</td>
-                                  <td>${student.apellido}</td>
-                                  <td><button class="btn-present" data-id="${student.id}">✅</button></td>
-                                  <td><button class="btn-absent" data-id="${student.id}">❌</button></td>
-                                  <td><button class="btn-late" data-id="${student.id}">⏳</button></td>
-                                  <td><button class="btn-justified" data-id="${student.id}">📝</button></td>
-                              </tr>
-                          `;
-                          studentList.insertAdjacentHTML('beforeend', row);
-                      });
-                  } else {
-                      studentList.innerHTML = '<tr><td colspan="7">No hay estudiantes registrados en este grupo.</td></tr>';
-                  }
-              } catch (error) {
-                  console.error('Error al analizar JSON:', error);
-                  studentList.innerHTML = '<tr><td colspan="7">Error al cargar la lista de estudiantes. Inténtelo más tarde.</td></tr>';
-              }
-          })
-          .catch(error => {
-              console.error('Error al cargar la lista de estudiantes:', error);
-              studentList.innerHTML = '<tr><td colspan="7">Error al cargar la lista de estudiantes. Inténtelo más tarde.</td></tr>';
-          });
-      };
+            if (parsedData.status === 'success' && parsedData.students.length > 0) {
+                parsedData.students.forEach(student => {
+                    // Inicializa el objeto de asistencia para cada alumno
+                    attendanceData[student.id] = { present: false, absent: false, late: false, justified: false };
+                    
+                    const row = `
+                        <tr>
+                            <td>${student.id}</td>
+                            <td>${student.nombre}</td>
+                            <td>${student.apellido}</td>
+                            <td><button class="btn-attendance btn-present" data-id="${student.id}">✅</button></td>
+                            <td><button class="btn-attendance btn-absent" data-id="${student.id}">❌</button></td>
+                            <td><button class="btn-attendance btn-late" data-id="${student.id}">⏳</button></td>
+                            <td><button class="btn-attendance btn-justified" data-id="${student.id}">📝</button></td>
+                        </tr>
+                    `;
+                    studentList.insertAdjacentHTML('beforeend', row);
+                });
+            } else {
+                studentList.innerHTML = '<tr><td colspan="7">No hay estudiantes registrados en este grupo.</td></tr>';
+            }
+        })
+        .catch(error => {
+            console.error('Error al cargar la lista de estudiantes:', error);
+            studentList.innerHTML = '<tr><td colspan="7">Error al cargar la lista de estudiantes. Inténtelo más tarde.</td></tr>';
+        });
+    };
 
-      studentList.addEventListener('click', (event) => {
-          const target = event.target;
-          if (target.tagName === 'BUTTON') {
-              const id = target.getAttribute('data-id');
-              if (id) {
-                  if (target.classList.contains('btn-present')) {
-                      attendanceData[id] = { present: true, absent: false, late: false, justified: false };
-                  } else if (target.classList.contains('btn-absent')) {
-                      attendanceData[id] = { present: false, absent: true, late: false, justified: false };
-                  } else if (target.classList.contains('btn-late')) {
-                      attendanceData[id] = { present: false, absent: false, late: true, justified: false };
-                  } else if (target.classList.contains('btn-justified')) {
-                      attendanceData[id] = { present: false, absent: false, late: false, justified: true };
-                  }
+    // Este es el listener principal que se encarga de la selección
+    studentList.addEventListener('click', (event) => {
+        const target = event.target;
+        if (target.classList.contains('btn-attendance')) {
+            const id = target.getAttribute('data-id');
+            const row = target.closest('tr');
+            
+            // Reinicia todos los estados para el alumno actual
+            attendanceData[id] = {
+                present: false,
+                absent: false,
+                late: false,
+                justified: false
+            };
 
-                  target.closest('tr').querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
-                  target.classList.add('active');
-              }
-          }
-      });
+            // Solo marca como 'true' el estado del botón clickeado
+            if (target.classList.contains('btn-present')) {
+                attendanceData[id].present = true;
+            } else if (target.classList.contains('btn-absent')) {
+                attendanceData[id].absent = true;
+            } else if (target.classList.contains('btn-late')) {
+                attendanceData[id].late = true;
+            } else if (target.classList.contains('btn-justified')) {
+                attendanceData[id].justified = true;
+            }
 
-      submitAttendanceButton.addEventListener('click', () => {
-          console.log('Enviando los siguientes datos al servidor:', attendanceData);
+            // Remueve la clase 'active' de todos los botones de la fila
+            row.querySelectorAll('.btn-attendance').forEach(btn => btn.classList.remove('active'));
+            
+            // Añade la clase 'active' solo al botón clickeado
+            target.classList.add('active');
+        }
+    });
 
-          fetch('guardar_asistencia.php', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(attendanceData)
-          })
-          .then(response => response.json())
-          .then(data => {
-              console.log('Respuesta del servidor:', data);
-              if (data.success) {
-                  alert('Asistencia guardada exitosamente.');
-                  attendanceModal.style.display = 'none';
-              } else {
-                  alert(`Hubo un error al guardar la asistencia: ${data.error}`);
-              }
-          })
-          .catch(error => {
-              console.error('Error de conexión con el servidor:', error);
-              alert('Error de conexión con el servidor.');
-          });
-      });
+    submitAttendanceButton.addEventListener('click', () => {
+        console.log('Enviando los siguientes datos al servidor:', attendanceData);
 
-      openModalButton.addEventListener('click', openModal);
-      closeModalButton.addEventListener('click', () => (attendanceModal.style.display = 'none'));
-  });
+        fetch('guardar_asistencia.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(attendanceData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.text().then(text => { throw new Error(text) });
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Respuesta del servidor:', data);
+            if (data.success) {
+                alert('Asistencia guardada exitosamente.');
+                attendanceModal.style.display = 'none';
+            } else {
+                alert(`Hubo un error al guardar la asistencia: ${data.error}`);
+            }
+        })
+        .catch(error => {
+            console.error('Error de conexión con el servidor:', error);
+            alert(`Error de conexión con el servidor. Detalles: ${error.message}`);
+        });
+    });
 
-
+    openModalButton.addEventListener('click', openModal);
+    closeModalButton.addEventListener('click', () => (attendanceModal.style.display = 'none'));
+});
 
         </script>
 
